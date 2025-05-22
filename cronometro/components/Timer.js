@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native'
 const Timer = ({texto}) => {
     return(
         <View>
-            <Text>{texto}</Text>
+            <Text style={style.timer}>{texto}</Text>
         </View>
     )
 }
@@ -11,5 +11,10 @@ const Timer = ({texto}) => {
 export default Timer;
 
 const style = StyleSheet.create({
-
+    timer: {
+        marginTop: -160,
+        fontSize: 65,
+        color: 'white',
+        fontWeight: 'bold'
+    }
 })

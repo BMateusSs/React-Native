@@ -12,14 +12,16 @@ export default function App() {
       <Timer
       texto="0.0"
       />
-
-      <Botao
+      <View style={styles.containerBotao}>
+        <Botao
       texto="Iniciar"
       />
 
       <Botao
       texto="Limpar"
       />
+      </View>
+      
     </View>
   );
 }
@@ -31,4 +33,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  containerBotao: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 40
+  }
 });
