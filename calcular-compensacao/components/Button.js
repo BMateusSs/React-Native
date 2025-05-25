@@ -1,18 +1,18 @@
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 
-const Button = ({onPress}) => {
+const ButtonMain = ({onPress, text}) => {
     return(
         <View style={styles.button}>
             <TouchableOpacity
             onPress={onPress}
             >
-                <Text style={styles.text}>Calcular</Text>
+                <Text style={styles.text}>{text}</Text>
             </TouchableOpacity>
         </View>
     )
 }
 
-export default Button;
+export default ButtonMain;
 
 const styles = StyleSheet.create({
     button: {
