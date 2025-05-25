@@ -5,6 +5,8 @@ import Input from './components/Input';
 import Button from './components/Button';
 import Title from './components/Title';
 import Logo from './components/Logo';
+import SubTitle from './components/SubTitle';
+
 import logo from './img/logo.png'
 
 export default function App() {
@@ -18,10 +20,19 @@ export default function App() {
       title="Qual a melhor opção?"
       />
 
-      <Input
-      />
+      <View style={styles.subSection}>
+        <SubTitle
+        sub="Álcool (preço por litro)"
+        />
+        <Input/>
+      </View>
 
-      <Input/>
+      <View style={styles.subSection}>
+        <SubTitle
+        sub="Álcool (preço por litro)"
+        />
+        <Input/>
+      </View>
 
       <Button/>
     </View>
@@ -35,4 +46,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  subSection: {
+    width: '80%',
+    justifyContent: 'center'
+  }
 });
