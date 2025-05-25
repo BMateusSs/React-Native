@@ -3,10 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Input from './components/Input';
 import Button from './components/Button';
+import Title from './components/Title';
 
 export default function App() {
   return (
     <View style={styles.container}>
+      <Title
+      title="Qual a melhor opção?"
+      />
+
       <Input
       />
 
