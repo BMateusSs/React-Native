@@ -1,55 +1,59 @@
-import { View, Modal, StyleSheet, Text } from "react-native";
+import { View, Modal, StyleSheet, Text, SafeAreaView } from "react-native";
 
-import Button from "./Button";
-import gas from '../img/gas.png'
-import Logo from "./Logo";
 import Title from "./Title";
 import ButtonMain from "./Button";
-import { useState } from "react";
 
 const ModalScreen = ({visible, onClose}) => {
-
     return(
-        <View style={styles.container}>
-            <Modal
+        <Modal
             animationType="slide"
+            transparent={true}
             visible={visible}
-            >
-                <View style={styles.subContainer}>
-                    <Logo
-                    logo={gas}
-                    />
+            onRequestClose={onClose}
+        >
+            <View style={styles.modalOverlay}>
+                <SafeAreaView style={styles.modalContent}>
 
                     <Text style={styles.title}>Compensa usar...</Text>
 
                     <Title
                     title='Com os preços:'
                     />
-                    
+
                     <ButtonMain
                     text='Calcular novamente'
                     onPress={onClose}
                     />
-                
-                </View>
-            </Modal>
-        </View>
+                </SafeAreaView>
+            </View>
+        </Modal>
     )
 }
 
 export default ModalScreen;
 
 const styles = StyleSheet.create({
-    container: {
+    modalOverlay: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'flex-end',
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
     },
-    subContainer: {
-        flex: 1,
+    modalContent: {
+        backgroundColor: '#212121',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        padding: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#212121' 
+    
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: -5,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 5,
+        elevation: 10,
     },
     title: {
         color: 'green',
@@ -57,4 +61,4 @@ const styles = StyleSheet.create({
         fontSize: 28,
         marginBottom: 20
     }
-})
+});

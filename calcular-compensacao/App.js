@@ -1,4 +1,4 @@
-import { Modal, StyleSheet, Text, View } from 'react-native';
+import { Modal, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 
 import Input from './components/Input';
 import ButtonMain from './components/Button';
@@ -22,53 +22,54 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Logo
-      logo={logo}
-      />
-
-      <Title
-      title="Qual a melhor opção?"
-      />
-
-      <View style={styles.subSection}>
-        <SubTitle
-        sub="Álcool (preço por litro)"
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Logo
+        logo={logo}
         />
-        <Input/>
-      </View>
 
-      <View style={styles.subSection}>
-        <SubTitle
-        sub="Gasolina (preço por litro)"
+        <Title
+        title="Qual a melhor opção?"
         />
-        <Input/>
+
+        <View style={styles.subSection}>
+          <SubTitle
+          sub="Álcool (preço por litro)"
+          />
+          <Input/>
+        </View>
+
+        <View style={styles.subSection}>
+          <SubTitle
+          sub="Gasolina (preço por litro)"
+          />
+          <Input/>
+        </View>
+
+        <ButtonMain
+        onPress={openModal}
+        text='Calcular'
+        />
+
+        <ModalScreen
+        visible={visible}
+        onClose={closeModal}
+        />
       </View>
-
-      <ButtonMain
-      onPress={openModal}
-      text='Calcular'
-      />
-
-      <ModalScreen
-      visible={visible}
-      onClose={closeModal}
-      />
-      
-      
-    </View>
-
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
     backgroundColor: '#212121',
+  },
+  container: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   subSection: {
     width: '80%',
     justifyContent: 'center'
