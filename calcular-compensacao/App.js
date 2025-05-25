@@ -4,10 +4,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import Input from './components/Input';
 import Button from './components/Button';
 import Title from './components/Title';
+import Logo from './components/Logo';
+import logo from './img/logo.png'
 
 export default function App() {
   return (
     <View style={styles.container}>
+      <Logo
+      logo={logo}
+      />
+
       <Title
       title="Qual a melhor opção?"
       />
