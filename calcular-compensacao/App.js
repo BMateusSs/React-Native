@@ -12,9 +12,17 @@ import { useState } from 'react';
 
 export default function App() {
   const [visible, setVisible] = useState(false);
+  const [alcool, setAlcool] = useState('');
+  const [gasolina, setGasolina] = useState('')
+
 
   function openModal(){
-    setVisible(true);
+    if (!alcool && !gasolina){
+      alert("Preencha os dois campos")
+    } else{
+      setVisible(true);
+    }
+    
   }
 
   function closeModal(){
@@ -36,14 +44,20 @@ export default function App() {
           <SubTitle
           sub="Álcool (preço por litro)"
           />
-          <Input/>
+          <Input
+          value={alcool}
+          onChange={setAlcool}
+          />
         </View>
 
         <View style={styles.subSection}>
           <SubTitle
           sub="Gasolina (preço por litro)"
           />
-          <Input/>
+          <Input
+          value={gasolina}
+          onChange={setGasolina}
+          />
         </View>
 
         <ButtonMain
@@ -54,6 +68,8 @@ export default function App() {
         <ModalScreen
         visible={visible}
         onClose={closeModal}
+        alcool={alcool}
+        gasolina={gasolina}
         />
       </View>
     </SafeAreaView>
