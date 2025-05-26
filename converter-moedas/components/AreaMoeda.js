@@ -1,9 +1,11 @@
 import {View, Text, StyleSheet} from 'react-native'
+import PickerComponent from './Picker';
 
 const AreaMoeda = () => {
     return(
         <View style={styles.area}>
             <Text>Selecionar moedas</Text>
+            <PickerComponent/>
         </View>
     )
 }
@@ -16,7 +18,6 @@ const styles = StyleSheet.create({
         borderTopStartRadius: 10,
         borderTopEndRadius: 10,
         width: '70%',
-        height: 40,
         padding: 8
     }
 })

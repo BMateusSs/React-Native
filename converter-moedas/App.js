@@ -6,7 +6,10 @@ import AreaMoeda from './components/AreaMoeda';
 export default function App() {
   return (
     <View style={styles.container}>
-      <AreaMoeda/>
+      <View style={styles.subContainer}>
+        <AreaMoeda/>
+      </View>
+      
     </View>
   );
 }
@@ -19,4 +22,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  subContainer: {
+    flexDirection: 'row'
+  }
 });
