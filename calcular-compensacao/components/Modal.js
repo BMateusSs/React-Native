@@ -3,8 +3,29 @@ import { View, Modal, StyleSheet, Text, SafeAreaView } from "react-native";
 import Title from "./Title";
 import ButtonMain from "./Button";
 import PriceText from "./PriceText";
+import { useEffect, useState } from "react";
 
 const ModalScreen = ({visible, onClose, alcool, gasolina}) => {
+    const [compensa, setCompensa] = useState('')
+    Calcular
+
+    function Calcular(){
+        const al = parseFloat(alcool)
+        const gas = parseFloat(gasolina)
+        const comp = al/gas
+
+        if (comp < 0.7){
+            setCompensa('álcool')
+        } else{
+            setCompensa('gasolina')
+        }
+    }
+
+    useEffect(()=> {
+        if (visible){
+            Calcular();
+        }
+    }, [visible, alcool, gasolina])
 
     return(
         <Modal
@@ -16,7 +37,7 @@ const ModalScreen = ({visible, onClose, alcool, gasolina}) => {
             <View style={styles.modalOverlay}>
                 <SafeAreaView style={styles.modalContent}>
 
-                    <Text style={styles.title}>Compensa usar...</Text>
+                    <Text style={styles.title}>Compensa usar {compensa}</Text>
 
                     <Title
                     title='Com os preços:'
