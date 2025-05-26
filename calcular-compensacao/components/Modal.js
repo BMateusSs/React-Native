@@ -2,8 +2,10 @@ import { View, Modal, StyleSheet, Text, SafeAreaView } from "react-native";
 
 import Title from "./Title";
 import ButtonMain from "./Button";
+import PriceText from "./PriceText";
 
-const ModalScreen = ({visible, onClose}) => {
+const ModalScreen = ({visible, onClose, alcool, gasolina}) => {
+
     return(
         <Modal
             animationType="slide"
@@ -18,6 +20,14 @@ const ModalScreen = ({visible, onClose}) => {
 
                     <Title
                     title='Com os preços:'
+                    />
+
+                    <PriceText
+                    text={"Álcool: R$ " + alcool}
+                    />
+
+                    <PriceText
+                    text={"Gasolina: R$ " + gasolina}
                     />
 
                     <ButtonMain
