@@ -1,7 +1,7 @@
 import {View, Text, StyleSheet} from 'react-native'
 import PickerComponent from './Picker';
 
-const AreaMoeda = () => {
+const AreaMoeda = ({moedas}) => {
     return(
         <View style={styles.area}>
             <Text>Selecionar moedas</Text>
