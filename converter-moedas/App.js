@@ -3,6 +3,8 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import PickerComponent from './components/Picker';
 import Loading from './components/Loading';
+import ButtonComponent from './components/ButtonComponent';
+
 import { api } from './services/api';
 
 
@@ -60,6 +62,10 @@ export default function App() {
         keyboardType='numeric'
         />
       </View>
+
+      <ButtonComponent/>
+
+      
     </View>
   );
 }
@@ -83,8 +89,6 @@ const styles = StyleSheet.create({
   areaValor: {
     width: '90%',
     backgroundColor: 'white',
-    borderEndEndRadius: 10,
-    borderStartEndRadius: 10,
     padding: 8
   },
   input: {
