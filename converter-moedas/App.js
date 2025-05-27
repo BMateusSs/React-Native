@@ -4,6 +4,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import PickerComponent from './components/Picker';
 import Loading from './components/Loading';
 import ButtonComponent from './components/ButtonComponent';
+import ModalScreen from './components/Modal';
 
 import { api } from './services/api';
 
@@ -12,6 +13,10 @@ export default function App() {
   const [moedas, setMoedas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null)
+  const [valorConverter, setValorConverter] = useState(null)
+
+  const [visible, setVisible] = useState(false)
+  const [valorConvertido, setValorConvertido] = useState(0)
 
   useEffect(() => {
     async function loadMoedas() {
@@ -44,6 +49,14 @@ export default function App() {
     );
   }
 
+  function handleResult(){
+    setVisible(true)
+  }
+
+  function closeModal(){
+    setVisible(false)
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.area}>
@@ -60,10 +73,19 @@ export default function App() {
         placeholder='Ex: 1.50'
         style={styles.input}
         keyboardType='numeric'
+        value={valorConverter}
+        onChangeText={setValorConverter}
         />
       </View>
 
-      <ButtonComponent/>
+      <ButtonComponent
+      onPress={handleResult}
+      />
+
+      <ModalScreen
+      visible={visible}
+      onClose={closeModal}
+      />
 
       
     </View>
