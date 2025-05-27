@@ -1,18 +1,25 @@
-import { Modal, View, Text, StyleSheet } from "react-native";
+import { Modal, View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
 
-const ModalScreen = ({ visible, onclose, coin, converter, valor }) => {
+const ModalScreen = ({ visible, onClose, coin, converter, valor }) => {
   return (
     <Modal visible={visible} 
     animationType="slide" 
     transparent={true}
-    onRequestClose={onclose}>
+    onRequestClose={onClose}>
       <View style={styles.overlay}>
         <View style={styles.container}>
           <Text style={styles.valorConvertido}>{coin} {converter}</Text>
           <Text style={styles.text}>corresponde a</Text>
           <Text style={styles.valorConvertido}>R$ {valor}</Text>
 
-            
+          <View style={styles.button}>
+            <TouchableOpacity
+            onPress={onClose}
+            >
+                <Text style={styles.textButton}>Calcular novamente</Text>
+            </TouchableOpacity>
+          </View>
+          
         </View>
       </View>
     </Modal>
@@ -47,5 +54,13 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     fontWeight: '500'
+  },
+  button: {
+    marginTop: 15
+  },
+  textButton: {
+    color: '#fb4b57',
+    fontSize: 17,
+    fontWeight: 'bold'
   }
 });

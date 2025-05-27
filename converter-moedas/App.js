@@ -20,7 +20,6 @@ export default function App() {
     async function loadMoedas() {
       try {
         const response = await api.get('all');
-
         let arrayMoedas = [];
         Object.keys(response.data).map((key) => {
           arrayMoedas.push({
@@ -31,7 +30,6 @@ export default function App() {
         });
         setMoedas(arrayMoedas);
         setSelected(arrayMoedas[0].key);
-
       } catch (error) {
         console.error("Erro ao carregar moedas:", error);
       } finally {
@@ -54,7 +52,6 @@ export default function App() {
     try {
       const response = await api.get(`/all/${selected}-BRL`);
       const value = response.data[selected].ask;
-
       setValorConvertido(value * valorConverter);
       setVisible(true);
     } catch (error) {
@@ -69,27 +66,29 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.area}>
-        <Text style={styles.text}>Selecionar moedas</Text>
-        <PickerComponent 
-          moedas={moedas}
-          selectedCoin={selected}
-          onChange={(coin) => setSelected(coin)}
-        />
-      </View>
+      <View style={styles.content}>
+        <View style={styles.area}>
+          <Text style={styles.text}>Selecionar moedas</Text>
+          <PickerComponent 
+            moedas={moedas}
+            selectedCoin={selected}
+            onChange={(coin) => setSelected(coin)}
+          />
+        </View>
 
-      <View style={styles.areaValor}>
-        <Text style={styles.text}>Digite um valor para converter em real</Text>
-        <TextInput
-          placeholder='Ex: 1.50'
-          style={styles.input}
-          keyboardType='numeric'
-          value={valorConverter}
-          onChangeText={setValorConverter}
-        />
-      </View>
+        <View style={styles.areaValor}>
+          <Text style={styles.text}>Digite um valor para converter em real</Text>
+          <TextInput
+            placeholder='Ex: 1.50'
+            style={styles.input}
+            keyboardType='numeric'
+            value={valorConverter}
+            onChangeText={setValorConverter}
+          />
+        </View>
 
-      <ButtonComponent onPress={converter} />
+        <ButtonComponent onPress={converter} />
+      </View>
 
       <ModalScreen
         visible={visible}
@@ -106,9 +105,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#101215',
-    paddingTop: 40,
+    paddingTop: 50,
+  },
+  content: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   area: {
     backgroundColor: 'white',
