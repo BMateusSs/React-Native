@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import PickerComponent from './components/Picker';
 import Loading from './components/Loading';
@@ -45,12 +45,20 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.area}>
-            <Text>Selecionar moedas</Text>
+            <Text style={styles.text}>Selecionar moedas</Text>
             <PickerComponent 
             moedas={moedas}
             selectedCoin={selected}
             onChange={(coin) => {setSelected(coin)}}
             />
+      </View>
+      <View style={styles.areaValor}>
+        <Text style={styles.text}>Digite um valor para converter em real</Text>
+        <TextInput
+        placeholder='Ex: 1.50'
+        style={styles.input}
+        keyboardType='numeric'
+        />
       </View>
     </View>
   );
@@ -68,7 +76,27 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderTopStartRadius: 10,
         borderTopEndRadius: 10,
-        width: '70%',
-        padding: 8
-    }
+        width: '90%',
+        padding: 8,
+        marginBottom: 1
+    },
+  areaValor: {
+    width: '90%',
+    backgroundColor: 'white',
+    borderEndEndRadius: 10,
+    borderStartEndRadius: 10,
+    padding: 8
+  },
+  input: {
+    width: '100%',
+    backgroundColor: 'lightgrey',
+    borderRadius: 10,
+    padding: 10
+
+  },
+  text: {
+    fontSize: 16,
+    paddingTop: 5,
+    paddingBottom: 5
+  }
   });
