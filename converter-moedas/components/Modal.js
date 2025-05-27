@@ -1,6 +1,6 @@
 import { Modal, View, Text, StyleSheet } from "react-native";
 
-const ModalScreen = ({ visible, onclose }) => {
+const ModalScreen = ({ visible, onclose, coin, converter, valor }) => {
   return (
     <Modal visible={visible} 
     animationType="slide" 
@@ -8,9 +8,9 @@ const ModalScreen = ({ visible, onclose }) => {
     onRequestClose={onclose}>
       <View style={styles.overlay}>
         <View style={styles.container}>
-          <Text style={styles.valorConvertido}>3 BTC</Text>
+          <Text style={styles.valorConvertido}>{coin} {converter}</Text>
           <Text style={styles.text}>corresponde a</Text>
-          <Text style={styles.valorConvertido}>R$ 100,00</Text>
+          <Text style={styles.valorConvertido}>R$ {valor}</Text>
 
             
         </View>
