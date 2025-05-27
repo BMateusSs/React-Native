@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import AreaMoeda from './components/AreaMoeda';
+import PickerComponent from './components/Picker';
 import Loading from './components/Loading';
 import { api } from './services/api';
 
@@ -41,7 +41,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <AreaMoeda moedas={moedas} />
+      <View style={styles.area}>
+            <Text>Selecionar moedas</Text>
+            <PickerComponent moedas={moedas}/>
+      </View>
     </View>
   );
 }
@@ -54,4 +57,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  area: {
+        backgroundColor: 'white',
+        borderTopStartRadius: 10,
+        borderTopEndRadius: 10,
+        width: '70%',
+        padding: 8
+    }
   });
