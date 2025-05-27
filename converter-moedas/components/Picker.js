@@ -1,22 +1,23 @@
 import { Picker } from "@react-native-picker/picker";
-import { useState } from "react";
-import {View} from 'react-native'
+import { View } from "react-native";
 
-const PickerComponent = ({moedas}) => {
-    const [selected, setSelected] = useState('')
-    return(
-        <View>
-            <Picker
-            selectedValue={selected}
-            onValueChange={(itemValue, indexValue) => {setSelected(itemValue)}}
-            >
-                <Picker.Item label="USD" key={0} value="USD"/>
-                <Picker.Item label="BTC" key={1} value="BTC"/>
-                <Picker.Item label="YNE" key={2} value="YNE"/>
-            </Picker>
-        </View>
-    )
-}
+const PickerComponent = ({ moedas, selectedCoin, onChange }) => {
+  return (
+    <View>
+      <Picker
+        selectedValue={selectedCoin}
+        onValueChange={(itemValue) => onChange(itemValue)}
+      >
+        {moedas.map((item) => (
+          <Picker.Item 
+            value={item.value} 
+            label={item.label} 
+            key={item.key} 
+          />
+        ))}
+      </Picker>
+    </View>
+  );
+};
 
 export default PickerComponent;
-

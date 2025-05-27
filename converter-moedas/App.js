@@ -9,6 +9,7 @@ import { api } from './services/api';
 export default function App() {
   const [moedas, setMoedas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selected, setSelected] = useState(null)
 
   useEffect(() => {
     async function loadMoedas() {
@@ -24,6 +25,8 @@ export default function App() {
           });
         });
         setMoedas(arrayMoedas);
+        setSelected(arrayMoedas[0].key)
+
       } catch (error) {
         console.error("Erro ao carregar moedas:", error);
       } finally {
@@ -43,7 +46,11 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.area}>
             <Text>Selecionar moedas</Text>
-            <PickerComponent moedas={moedas}/>
+            <PickerComponent 
+            moedas={moedas}
+            selectedCoin={selected}
+            onChange={(coin) => {setSelected(coin)}}
+            />
       </View>
     </View>
   );
