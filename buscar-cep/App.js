@@ -1,9 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
+import api from './services/api';
 
 export default function App() {
   const [cep, setCep] = useState('')
+
+  async function buscar() {
+    if (cep = ''){
+      alert("Preencha corretamente")
+    }
+
+    const response = await api.get(`/${cep}`)
+
+  }
 
   return (
     <View style={styles.container}>
@@ -28,4 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  input: {
+    
+  }
 });
