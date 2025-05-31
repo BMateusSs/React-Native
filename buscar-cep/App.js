@@ -6,19 +6,10 @@ import api from './services/api';
 export default function App() {
   const [cep, setCep] = useState('')
 
-  async function buscar() {
-    if (cep = ''){
-      alert("Preencha corretamente")
-    }
-
-    const response = await api.get(`/${cep}`)
-
-  }
-
   return (
     <View style={styles.container}>
-      <View style={{justifyContent: 'center'}}>
-        <Text>Digite o CEP desejado:</Text>
+      <View style={{alignItems: 'center'}}>
+        <Text style={styles.text}>Digite o CEP desejado:</Text>
         <TextInput
           style={styles.input}
           placeholder='Ex: 12345678'
@@ -36,9 +27,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   input: {
-    
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 5,
+    width: '90%',
+    padding: 10,
+    fontSize: 18
+  },
+  text: {
+    marginTop: 35,
+    marginBottom: 15,
+    fontWeight: 'bold',
+    fontSize: 25,
   }
 });
