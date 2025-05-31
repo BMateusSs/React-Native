@@ -1,13 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 import api from './services/api'
 
 export default function App() {
   const [cep, setCep] = useState('')
+  const inputRef = useRef(null)
+  const [cepUser, setCepUser] = useState(null)
 
   async function buscar(){
+    if (cep === ''){
+      alert("CEP inválido")
+      setCep
+      return
+    }
+    const response = await api.get(`/${cep}/json`)
+    console.log(response)
+    setCepUser(response.data)
+  }
 
+  function limpar(){
+    setCep('')
+    inputRef.current.focus();
   }
 
   return (
@@ -19,20 +33,34 @@ export default function App() {
           placeholder='Ex: 12345678'
           value={cep}
           onChangeText={setCep}
+          ref={inputRef}
         />
       </View>
 
       <View style={styles.areabtn}>
-        <TouchableOpacity style={[styles.botao, {backgroundColor: 'green'}]}>
+        <TouchableOpacity style={[styles.botao, {backgroundColor: 'green'}]}
+        onPress={buscar}
+        >
           <Text style={styles.textbtn}>Buscar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={[styles.botao, {backgroundColor: 'red'}]}
-        onPress={buscar}
+        onPress={limpar}
         >
           <Text style={styles.textbtn}>Limpar</Text>
         </TouchableOpacity>
       </View>
+
+      {cepUser && 
+        <View style={styles.resultado}>
+          <Text style={styles.itemText}>Cep: {cepUser.cep}</Text>
+          <Text style={styles.itemText}>Logradouro: {cepUser.logradouro} </Text>
+          <Text style={styles.itemText}>Bairro: {cepUser.bairro}</Text>
+          <Text style={styles.itemText}>Cidade: {cepUser.localidade}</Text>
+          <Text style={styles.itemText}>Estado: {cepUser.estado}</Text>
+        </View>
+      }
+      
       <StatusBar style="auto" />
     </View>
   );
@@ -76,5 +104,13 @@ const styles = StyleSheet.create({
   textbtn: {
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  resultado: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  itemText: {
+    fontSize: 22
   }
 });
