@@ -22,6 +22,7 @@ export default function App() {
   function limpar(){
     setCep('')
     inputRef.current.focus();
+    setCepUser(null)
   }
 
   return (
